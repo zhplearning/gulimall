@@ -5,7 +5,9 @@ import java.util.Map;
 
 import com.zhp.gulimall.gulimallcommon.utils.PageUtils;
 import com.zhp.gulimall.gulimallcommon.utils.R;
-import org.apache.shiro.authz.annotation.RequiresPermissions;
+
+
+import com.zhp.gulimall.gulimallmember.feign.CouponFeignService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +33,21 @@ import com.zhp.gulimall.gulimallmember.service.MemberService;
 public class MemberController {
     @Autowired
     private MemberService memberService;
+
+    @Autowired
+    CouponFeignService couponFeignService;
+
+    @RequestMapping("/coupons")
+    public R test(){
+        MemberEntity memberEntity = new MemberEntity();
+        memberEntity.setNickname("会员昵称张三");
+        R membercoupons = couponFeignService.memberCoupon();//假设张三去数据库查了后返回了张三的优惠券信息
+        System.out.println(membercoupons);
+        System.out.println("这是一个测试！");
+
+        //打印会员和优惠券信息
+        return R.ok().put("member",memberEntity).put("coupon",membercoupons.get("coupon"));
+    }
 
     /**
      * 列表

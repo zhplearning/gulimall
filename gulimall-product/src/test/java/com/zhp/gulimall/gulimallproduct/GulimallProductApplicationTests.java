@@ -15,8 +15,9 @@ class GulimallProductApplicationTests {
     @Test
     void contextLoads() {
         BrandEntity brandEntity=new BrandEntity();
-        brandEntity.setDescript("哈哈哈");
+        brandEntity.setDescript("汽车企业的新秀");
         brandEntity.setName("小米su7");
+        brandEntity.setLogo("pro");
         brandService.save(brandEntity);
         System.out.println("保存成功！");
     }

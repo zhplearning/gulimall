@@ -2,8 +2,14 @@ spring:
   datasource:
     username: root
     password: "080655"
-    url: jdbc:mysql://192.168.56.10:3307/gulimall-oms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    url: jdbc:mysql://192.168.56.10:3307/gulimall_oms?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
     driver-class-name: com.mysql.cj.jdbc.Driver
+  application:
+    name: gulimall-order
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 192.168.56.1:8848
 
 
 mybatis-plus:
@@ -15,4 +21,9 @@ mybatis-plus:
       logic-not-delete-value: 0
 
 server:
-  port: 9000
+  port: 9003
+
+feign:
+  hystrix:
+    enabled: true
+
